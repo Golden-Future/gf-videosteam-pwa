@@ -1,0 +1,24 @@
+{
+  "name": "gf-videostream-pwa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Golden-Future/gf-videosteam-pwa.git"
+  },
+  "keywords": [
+    "Video",
+    "Stream",
+    "PWA"
+  ],
+  "author": "Nanda Kyaw Win",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Golden-Future/gf-videosteam-pwa/issues"
+  },
+  "homepage": "https://github.com/Golden-Future/gf-videosteam-pwa#readme"
+}
