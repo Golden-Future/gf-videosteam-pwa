@@ -260,7 +260,7 @@ module.exports = () => {
     );
   })
 
-  router.get("/superuser/post/:start/:count", (req, res) => {
+  router.get("/superuser/post/:start/:count", (req, res) => { // PAGINATE POST
     let start = parseInt(req.params.start, 10);
     let count = parseInt(req.params.count, 10);
     Post.paginate(start, count)
