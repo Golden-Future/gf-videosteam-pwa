@@ -271,7 +271,7 @@ module.exports = () => {
           data: encryptedData,
           msg: "Success",
           status: 200,
-          length: result,
+          length: result.total,
         });
       })
       .catch((error) =>
