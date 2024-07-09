@@ -272,6 +272,9 @@ module.exports = () => {
           msg: "Success",
           status: 200,
           length: result.total,
+          limit: result.limit,
+          page: result.page,
+          pages: result.pages
         });
       })
       .catch((error) =>
