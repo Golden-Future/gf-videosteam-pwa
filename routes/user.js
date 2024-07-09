@@ -538,11 +538,9 @@ module.exports = () => {
   
     router.post("/superuser/ads", (req, res) => { // CREATE ADS
       let obj = {
-        user_id: req.body.user_id,
-        balance: req.body.balance,
-        type: req.body.type,
+        url: req.body.url
       };
-      Transaction.save(obj)
+      Ads.save(obj)
       .then((result) => {
         const encryptedData = encrypt(JSON.stringify(result));
         res.json({
@@ -557,13 +555,11 @@ module.exports = () => {
       );
     })
   
-    router.put("/superuser/transaction", (req, res) => { // UPDATE ADS
+    router.put("/superuser/ads", (req, res) => { // UPDATE ADS
       let obj = {
-        user_id: req.body.user_id,
-        balance: req.body.balance,
-        type: req.body.type,
+        url: req.body.url
       };
-      Transaction.update(obj)
+      Ads.update(obj)
       .then((result) => {
         const encryptedData = encrypt(JSON.stringify(result));
         res.json({
@@ -578,9 +574,9 @@ module.exports = () => {
       );
     })
   
-    router.delete("/superuser/transaction", (req, res) => { // DELETE ADS
-      let id = req.body.transaction_id;
-      Transaction.destory(id)
+    router.delete("/superuser/ads", (req, res) => { // DELETE ADS
+      let id = req.body.ads_id;
+      Ads.destory(id)
       .then((result) => {
         const encryptedData = encrypt(JSON.stringify(result));
         res.json({
