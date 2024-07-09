@@ -4,7 +4,7 @@
 
   I used these languages and frameworks 
   `` Node.JS ``, `` ExpressJS ``, `` MongoDB ``
-  So your machine must have `` mongodb 5`` and NodeJS `` version: v^18 ``.
+  So your machine must have ``mongodb 5`` and NodeJS `` version: v^18 ``.
 
 ## For Development
 
