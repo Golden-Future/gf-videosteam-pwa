@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "./files")));
 
 app.use(cors());
-app.use("/api/secretR", userRoute);
+app.use("/api/v1", userRoute);
 
 app.listen(process.env.PORT, (_) => {
   console.log(`Server is running at ${process.env.PORT}`);
