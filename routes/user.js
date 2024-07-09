@@ -261,23 +261,23 @@ module.exports = () => {
   })
 
   router.get("/superuser/post/:start/:count", (req, res) => {
-    let start = req.params('start');
-    let count = req.params('count');
+    let start = parseInt(req.params.start, 10);
+    let count = parseInt(req.params.count, 10);
     Post.paginate(start, count)
-    .then((result) => {
-      const encryptedData = encrypt(JSON.stringify(result));
-      res.json({
-        con: true,
-        data: encryptedData,
-        msg: "Success",
-        status: 200,
-        length: result.length,
-      });
-    })
-    .catch((error) =>
-      res.json({ con: false, data: error, msg: `Fail`, status: 304 })
-    );
-  })
+      .then((result) => {
+        const encryptedData = encrypt(JSON.stringify(result));
+        res.json({
+          con: true,
+          data: encryptedData,
+          msg: "Success",
+          status: 200,
+          length: result,
+        });
+      })
+      .catch((error) =>
+        res.json({ con: false, data: error, msg: `Fail`, status: 304 })
+      );
+  });
 
   // ****** POST ******* //
 
@@ -519,23 +519,81 @@ module.exports = () => {
 
   // ****** ADS ******* //
 
-    router.get("/superuser/all/ads", (req, res) => {
+    router.get("/superuser/ads", (req, res) => { // ALL ADS
       Ads.all()
         .then((result) => {
           const encryptedData = encrypt(JSON.stringify(result));
           res.json({
             con: true,
             data: encryptedData,
-            msg: "Data Get Success",
+            msg: "Success",
             status: 200,
             length: result.length,
           });
         })
         .catch((error) =>
-          res.json({ con: false, data: error, msg: `Error`, status: 304 })
+          res.json({ con: false, data: error, msg: `Fail`, status: 304 })
         );
     });
   
+    router.post("/superuser/ads", (req, res) => { // CREATE ADS
+      let obj = {
+        user_id: req.body.user_id,
+        balance: req.body.balance,
+        type: req.body.type,
+      };
+      Transaction.save(obj)
+      .then((result) => {
+        const encryptedData = encrypt(JSON.stringify(result));
+        res.json({
+          con: true,
+          data: encryptedData,
+          msg: "Success",
+          status: 200
+        });
+      })
+      .catch((error) =>
+        res.json({ con: false, data: error, msg: `Fail`, status: 304 })
+      );
+    })
+  
+    router.put("/superuser/transaction", (req, res) => { // UPDATE ADS
+      let obj = {
+        user_id: req.body.user_id,
+        balance: req.body.balance,
+        type: req.body.type,
+      };
+      Transaction.update(obj)
+      .then((result) => {
+        const encryptedData = encrypt(JSON.stringify(result));
+        res.json({
+          con: true,
+          data: encryptedData,
+          msg: "Success",
+          status: 200
+        });
+      })
+      .catch((error) =>
+        res.json({ con: false, data: error, msg: `Fail`, status: 304 })
+      );
+    })
+  
+    router.delete("/superuser/transaction", (req, res) => { // DELETE ADS
+      let id = req.body.transaction_id;
+      Transaction.destory(id)
+      .then((result) => {
+        const encryptedData = encrypt(JSON.stringify(result));
+        res.json({
+          con: true,
+          data: encryptedData,
+          msg: "Success",
+          status: 200
+        });
+      })
+      .catch((error) =>
+        res.json({ con: false, data: error, msg: `Fail`, status: 304 })
+      );
+    }) 
   // ****** ADS ******* //
 
   return router;
