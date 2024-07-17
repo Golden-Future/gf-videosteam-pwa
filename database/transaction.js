@@ -1,12 +1,14 @@
 let db = require("./db");
 let Transaction = db.Transaction;
 
-let all = () => {
+const all = () => {
   return new Promise((resolve, reject) => {
-    Transaction.find({}, (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
+    Transaction.find()
+      .populate('user_id')  
+      .exec((err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      });
   });
 };
 

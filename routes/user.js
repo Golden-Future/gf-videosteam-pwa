@@ -136,7 +136,7 @@ module.exports = () => {
       email: req.body.email,
       role: req.body.role,
       name: req.body.name,
-      userName: req.body.userName,
+      username: req.body.username,
       user_id: req.body.user_id,
       password: null,
       login: false,
@@ -155,8 +155,9 @@ module.exports = () => {
       );
   });
 
-  router.delete("/superuser/user", (req, res) => { // DELETE USER
-    let id = req.body.user_id;
+  router.delete("/superuser/user/:id", (req, res) => { // DELETE USER
+    let id = req.param('id');
+    console.log(id)
     User.destory(id)
       .then((result) => {
         const encryptedData = encrypt(JSON.stringify(result));
@@ -243,8 +244,9 @@ module.exports = () => {
     );
   })
 
-  router.delete("/superuser/post", (req, res) => { // DELETE POST
-    let id = req.body.post_id;
+  router.delete("/superuser/post/:id", (req, res) => { // DELETE POST
+    let id = req.param('id');
+    console.log(id);
     Post.destory(id)
     .then((result) => {
       const encryptedData = encrypt(JSON.stringify(result));
@@ -485,6 +487,7 @@ module.exports = () => {
       user_id: req.body.user_id,
       balance: req.body.balance,
       type: req.body.type,
+      transaction_id: req.body.transaction_id
     };
     Transaction.update(obj)
     .then((result) => {
@@ -501,8 +504,8 @@ module.exports = () => {
     );
   })
 
-  router.delete("/superuser/transaction", (req, res) => { // DELETE TRANSACTION
-    let id = req.body.transaction_id;
+  router.delete("/superuser/transaction/:id", (req, res) => { // DELETE TRANSACTION
+    let id = req.param('id');
     Transaction.destory(id)
     .then((result) => {
       const encryptedData = encrypt(JSON.stringify(result));
@@ -560,7 +563,8 @@ module.exports = () => {
   
     router.put("/superuser/ads", (req, res) => { // UPDATE ADS
       let obj = {
-        url: req.body.url
+        url: req.body.url,
+        ads_id:req.body.ads_id
       };
       Ads.update(obj)
       .then((result) => {
@@ -577,8 +581,8 @@ module.exports = () => {
       );
     })
   
-    router.delete("/superuser/ads", (req, res) => { // DELETE ADS
-      let id = req.body.ads_id;
+    router.delete("/superuser/ads/:id", (req, res) => { // DELETE ADS
+      let id = req.param('id');
       Ads.destory(id)
       .then((result) => {
         const encryptedData = encrypt(JSON.stringify(result));

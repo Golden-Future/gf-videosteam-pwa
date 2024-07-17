@@ -16,6 +16,7 @@ let encrypt = (text) => {
   encrypted += cipher.final('hex');
   return iv.toString('hex') + ':' + encrypted;
 };
+
 let userScheme = new Schema({
   username: { type: String, required: true },
   email: { type: String, required: true },
@@ -28,14 +29,14 @@ let userScheme = new Schema({
 });
 
 let walletScheme = new Schema({
-  user_id: { type: String, required: true },
+  user_id: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
   balance: { type: Number, required: true },
   control: { type: Boolean, required: true },
   since: { type: Date, required: true },
 });
 
 let transactionScheme = new Schema({
-  user_id: { type: String, required: true },
+  user_id: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
   balance: { type: Number, required: true },
   type: {type: String,required:true},
   since: { type: Date, required: true },  
